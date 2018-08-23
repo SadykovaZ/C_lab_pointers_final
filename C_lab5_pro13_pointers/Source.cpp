@@ -1,6 +1,7 @@
 ﻿#include<iostream>
 #include<time.h>
 #include<math.h>
+
 using namespace std;
 int main()
 {
@@ -151,7 +152,7 @@ start:
 		{
 			for (p = a + 1; p < a + 19; p += 2)
 			{
-				if (*p < 0 || *(p + 2) < 0) continue;
+				if (*p < 0) continue; else
 				{
 					if (*p > *(p + 2))
 					{
@@ -173,40 +174,26 @@ start:
 
 		int a[20] = { 1,3,6,10,2,5,8,13,4,20, 4,3,6,11,2,5,89,13,40,20 };
 		int *p = a;
-		int temp, temp1;
-
-		//смогла сделать только в порядке возрастания четные и нечетные элементы
+		
 		for (p = a; p < a + 20; p++)
 		{
 			cout << *p << " ";
 		}
 		cout << endl;
 
-		for (int i = 1; i < 20; i++)
+		for (int pass = 0; pass < 20; pass++)
 		{
-			for (int j = 0; j < 20-i; j += 2)
+			for (p = a; p < a + 18; p++)
 			{
-				if (a[j] < a[j + 1])
+				if ((p - a) % 2 != 0) 
 				{
-					temp = a[j];
-					a[j] = a[j + 1];
-					a[j + 1] = temp;
+					if (*p < *(p + 2))
+						swap(*p, *(p + 2));
 				}
+				else if (*p > *(p + 2))
+					swap(*p, *(p + 2));
 			}
 		}
-		for (int i = 0; i < 20; i++)
-		{
-			for (int j = i + 1; j < 20; j += 2)
-			{
-				if (a[i] > a[j])
-				{
-					temp1 = a[i];
-					a[i] = a[j];
-					a[j] = temp1;
-				}
-			}
-		}
-
 		for (p = a; p < a + 20; p++)
 		{
 			cout << *p << " ";
@@ -217,8 +204,7 @@ start:
 	{
 		cout << "10. Дана последовательность a1,a2,...,a15. Используя указатели требуется упорядочить ее по возрастанию абсолютных значений элементов." << endl;
 		int a[15];
-		int *p = a;
-		int temp;
+		int *p = a;		
 
 		for (p = a; p < a + 15; p++)
 		{
@@ -230,15 +216,13 @@ start:
 		}
 		cout << endl;
 
-		for (int i = 0; i < 15 - 1; i++)
+		for (int i = 0; i < 15; i++)
 		{
-			for (int j = 0; j < 15 - i - 1; j++)
+			for (p = a; p < a + 14; p++)
 			{
-				if (abs(a[j]) > abs(a[j + 1]))
+				if (abs(*p) > abs(*(p+1)))
 				{
-					temp = a[j];
-					a[j] = a[j + 1];
-					a[j + 1] = temp;
+					swap(*p, *(p + 1));
 				}
 			}
 		}
